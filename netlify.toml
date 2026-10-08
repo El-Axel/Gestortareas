@@ -1,0 +1,19 @@
+# Claqueta es un sitio estático: no hay nada que compilar.
+# Netlify solo tiene que publicar la carpeta tal cual.
+
+[build]
+  publish = "."
+  command = ""
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    # El inicio de sesión de Google abre una ventana emergente: esta política la deja comunicarse con la app.
+    Cross-Origin-Opener-Policy = "same-origin-allow-popups"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
